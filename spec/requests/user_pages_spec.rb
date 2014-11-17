@@ -81,6 +81,12 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
     let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+    let(:u1) { FactoryGirl.create(:arxiv, filename: '1111.111') }
+    let(:u2) { FactoryGirl.create(:arxiv, filename: '2222.222') }
+    let(:u3) { FactoryGirl.create(:arxiv, filename: '2222.222') }
+    let!(:d1) { FactoryGirl.create(:document, user: user, url: u1) }
+    let!(:d2) { FactoryGirl.create(:document, user: user, url: u2) }
+    let!(:d3) { FactoryGirl.create(:document, user: user, url: u3) }
 
     before { visit user_path(user) }
 
@@ -91,6 +97,13 @@ describe "User pages" do
       it { should have_content(m1.content) }
       it { should have_content(m2.content) }
       it { should have_content(user.microposts.count) }
+    end
+
+    describe "documents" do
+      it { should have_content(d1.url) }
+      it { should have_content(d2.url) }
+      it { should have_content(d3.url) }
+      it { should have_content(user.documents.count) }
     end
 
     describe "follow/unfollow buttons" do

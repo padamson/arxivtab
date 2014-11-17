@@ -26,6 +26,7 @@ describe User do
   it { should respond_to(:following?) }
   it { should respond_to(:follow!) }
   it { should respond_to(:unfollow!) }
+  it { should respond_to(:documents) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -202,6 +203,23 @@ describe User do
 
       it { should_not be_following(other_user) }
       its(:followed_users) { should_not include(other_user) }
+    end
+  end
+
+  describe "document associations" do
+
+    before { @user.save }
+    let(:url1) { FactoryGirl.create(:arxiv, filename: '1111.111') }
+    let(:url2) { FactoryGirl.create(:arxiv, filename: '2222.222') }
+    let!(:older_document) do
+      FactoryGirl.create(:document, user: @user, url: url1, created_at: 1.day.ago)
+    end
+    let!(:newer_document) do
+      FactoryGirl.create(:document, user: @user, url: url2, created_at: 1.hour.ago)
+    end
+
+    it "should have the right documents in the right order" do
+      @user.documents.should == [newer_document, older_document]
     end
   end
 end
