@@ -3,6 +3,7 @@ namespace :db do
   task populate: :environment do
     make_users
     make_microposts
+    make_documents
     make_relationships
   end
 end
@@ -29,6 +30,20 @@ def make_microposts
   50.times do
     content = Faker::Lorem.sentence(5)
     users.each { |user| user.microposts.create!(content: content) }
+  end
+end
+
+def make_documents
+  users = User.all(limit: 6)
+  n = 1000
+  m = 100
+  5.times do
+    users.each do |user|
+      url = "http://www.arxiv.org/pdf/#{n}.#{m}.pdf"
+      user.documents.create!(url: url) 
+      n = n + 1
+      m = m + 1
+    end
   end
 end
 
