@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :user do
     sequence(:name)  { |n| "Person #{n}" }
     sequence(:email) { |n| "person_#{n}@example.com"}
@@ -52,14 +53,8 @@ FactoryGirl.define do
       extension '.pdf'
     end
 
-    initialize_with { 
-      new("#{protocol}#{[host, port].compact.join(':')}#{path}#{filename}#{extension}") }
+    initialize_with { new("#{protocol}#{[host, port].compact.join(':')}#{path}#{filename}#{extension}") }
 
-  end
-
-  factory :document do
-    url
-    user
   end
 
 end

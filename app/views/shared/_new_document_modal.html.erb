@@ -1,0 +1,18 @@
+<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
+<% if !@micropost.errors.any? %>
+  <div class="modal fade" id="new_document_modal" tabindex="-1" role="dialog" 
+    aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Add document</h4>
+        </div>
+        <div class="modal-body">
+          <%# Render the new document form (passing modal => true to enable remote => true) %>
+          <%= render 'shared/document_form', modal: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

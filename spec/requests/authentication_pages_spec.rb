@@ -125,6 +125,22 @@ describe "Authentication" do
         end
       end
 
+      describe "in the Documents controller" do
+
+        describe "submitting to the create action" do
+          before { post documents_path }
+          specify { response.should redirect_to(signin_url) }
+        end
+
+        describe "submitting to the destroy action" do
+          before do
+            url = FactoryGirl.create(:arxiv, filename: '1111.111')
+            delete document_path(FactoryGirl.create(:document, url: url)) 
+          end
+          specify { response.should redirect_to(signin_url) }
+        end
+      end
+
       describe "in the Relationships controller" do
         describe "submitting to the create action" do
           before { post relationships_path }

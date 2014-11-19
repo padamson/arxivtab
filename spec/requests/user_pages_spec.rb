@@ -84,9 +84,9 @@ describe "User pages" do
     let(:u1) { FactoryGirl.create(:arxiv, filename: '1111.111') }
     let(:u2) { FactoryGirl.create(:arxiv, filename: '2222.222') }
     let(:u3) { FactoryGirl.create(:arxiv, filename: '2222.222') }
-    let!(:d1) { FactoryGirl.create(:document, user: user, url: u1) }
-    let!(:d2) { FactoryGirl.create(:document, user: user, url: u2) }
-    let!(:d3) { FactoryGirl.create(:document, user: user, url: u3) }
+    let!(:d1) { Document.create(user: user, url: u1) }
+    let!(:d2) { Document.create(user: user, url: u2) }
+    let!(:d3) { Document.create(user: user, url: u3) }
 
     before { visit user_path(user) }
 

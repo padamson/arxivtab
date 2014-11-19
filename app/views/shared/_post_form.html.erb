@@ -1,0 +1,52 @@
+<% if @micropost && @micropost.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(@micropost.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @micropost.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @document && @document.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(@document.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @document.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%# @micropost1 = Micropost.new %>
+<%#= render partial: 'shared/error_messages', object: => micropost %>
+<%#= render partial: 'shared/error_messages', object: => document %>
+<%# content = "This is a hard-wired post." %>
+<%# micropost_content = "" %>
+<%= form_tag(microposts_path, method: "post") do %>
+  <%= text_area_tag :content %>
+  <%= @micropost1 = Micropost.new(:user => @user, :content => :content) %>
+  <%= hidden_field_tag(@micropost1) %>
+  <%= submit_tag("Post", name: "post", :data => :micropost, class: "btn btn-large btn-primary") %>
+<% end %>
+  <%#= text_area_tag :content, size: "20x30" %>
+  <%#= button_to "Post", { action: "create" , controller: :microposts, micropost: {content: :content , user: @user} } %> 
+<%#= form_tag(microposts_path, method: "post") do %>
+  <%#= text_field_tag(:content) %>
+  <%#= hash_as_hidden_fields({:micropost => user: @user}) %>
+  <%#= hidden_field_tag(:micropost, :user, value: @user) %>
+  <%#= hidden_field_tag(:micropost, :content, value: :content) %>
+  <%#= submit_tag("Post", name: "post", :data => :micropost, class: "btn btn-large btn-primary") %>
+<%# end %>
+
+<%# @document1 = Document.new %>
+<%#= render partial: 'shared/error_messages', object: @document1 %>
+<%# document_url = "" %>
+<%# document_url = "http://www.arxiv.org/pdf/1111.123.pdf" %>
+<%#= button_to "Add document", { action: "create" , controller: :documents, document: {url: document_url, user: @user} } %> 

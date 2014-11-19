@@ -64,6 +64,8 @@ describe "Static pages" do
     visit root_path
     click_link "About"
     page.should have_title full_title('About Us')
+    click_link "arXiv Search"
+    page.should have_title full_title('arXiv Search')
     click_link "Help"
     page.should have_title full_title('Help')
     click_link "Contact"

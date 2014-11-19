@@ -21,7 +21,7 @@ class Document < ActiveRecord::Base
   VALID_URL_REGEX = Regexp.new(re,Regexp::IGNORECASE);
 
   validates :url, presence: true, length: { maximum: 130 },
-    format: { with: VALID_URL_REGEX }
+    format: { with: VALID_URL_REGEX }, uniqueness: { case_sensitive: false }
 
   default_scope -> { order('documents.created_at DESC') }
 end

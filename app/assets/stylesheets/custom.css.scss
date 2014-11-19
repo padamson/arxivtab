@@ -10,6 +10,21 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
+code {
+  padding: 24px 15px;
+}
+header, aside, section, footer { 
+  margin: 0 24px 24px 1.5%; 
+}
+section {
+  margin-bottom: 0;
+}
+header { 
+  margin-left: 0;
+  margin-right: 0;
+}
+footer { margin-bottom: 0; }
+
 /* universal */
 
 html {
@@ -21,7 +36,9 @@ body {
 }
 
 section {
-  overflow: auto;
+  float: right;
+  width: 50%;
+  //overflow: auto;
 }
 
 textarea {
@@ -84,7 +101,9 @@ p {
 /* footer */
 
 footer {
+  clear: both;
   margin-top: 45px;
+  margin-bottom: 0;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
@@ -120,8 +139,10 @@ footer {
 /* sidebar */
 
 aside {
+  width: 40%;
+  float: left;
   section {
-    padding: 10px 0;
+    padding: 0 0;
     border-top: 1px solid $grayLighter;
     &:first-child {
       border: 0;

@@ -1,0 +1,12 @@
+<%= form_for(:result) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :url, placeholder: "Insert search terms..." %>
+  <%= f.submit "Search", :name => 'search_button', class: "btn btn-medium btn-primary pull-right" %>
+  </div>
+<% end %>
+<% url = URI.parse('http://export.arxiv.org/api/query?search_query=all:electron&start=0&max_results=1') %>
+<% res = Net::HTTP.get_response(url) %>
+<div class="field">
+  <% puts res.body %>
+</div>
